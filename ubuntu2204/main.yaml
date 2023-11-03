@@ -1,0 +1,26 @@
+---
+- name: Install JSalv Desktop Applications
+  hosts: localhost
+  connection: local
+  become: true
+  tasks:
+
+    - name: "Create Directories"
+      ansible.builtin.import_tasks:
+        file: ./playbooks/create_dirs.yaml
+
+    - name: "General Tools with Apt-Get"
+      ansible.builtin.import_tasks:
+        file: ./playbooks/install_linux_general_tools.yaml
+
+    - name: "OMZ"
+      ansible.builtin.import_tasks:
+        file: ./playbooks/install_omz.yaml
+
+    - name: "Miniforge"
+      ansible.builtin.import_tasks:
+        file: ./playbooks/install_miniforge.yaml
+
+    - name: "AWS CLI"
+      ansible.builtin.import_tasks:
+        file: ./playbooks/install_aws_cli.yaml

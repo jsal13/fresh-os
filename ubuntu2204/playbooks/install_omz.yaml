@@ -1,0 +1,28 @@
+---
+- name: "[OMZ] Check if installer hash exists"
+  ansible.builtin.stat: 
+    path: "{{ INSTALLED_HASH_FOLDER }}/omz"
+  register: hash_file_check
+
+- name: "Install OMZ Block"
+  block:
+    - name: "[OMZ] Download Install File"
+      ansible.builtin.get_url:
+        url: "{{ OH_MY_ZSH_LATEST_URL }}"
+        dest: "/tmp/omzsh.sh"
+        mode: '0775'
+
+    - name: "[OMZ] Run Install"
+      ansible.builtin.script:
+        cmd: "/tmp/omzsh.sh --unattended"
+
+    - name: "[OMZ] Create Checksum of Installer"
+      ansible.builtin.copy:
+        dest: "{{ INSTALLED_HASH_FOLDER }}/omz"
+        content: "md5sum /tmp/omzsh.sh"
+
+    - name: "[OMZ] Remove Install Script"
+      ansible.builtin.file:
+        path: "/tmp/omzsh.sh"
+        state: absent
+  when: hash_file_check.stat.exists == False

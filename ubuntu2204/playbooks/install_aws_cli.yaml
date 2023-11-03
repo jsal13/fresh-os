@@ -1,0 +1,39 @@
+---
+- name: "[AWS CLI] Check if installer hash exists"
+  ansible.builtin.stat: 
+    path: "{{ INSTALLED_HASH_FOLDER }}/awscli"
+  register: hash_file_check
+
+- name: "Install AWS CLI Block"
+  block:
+    - name: "[AWS CLI] Download Zip File"
+      ansible.builtin.get_url:
+        url: "{{ AWS_CLI_LATEST_URL }}"
+        dest: "/tmp/awscli-bundle.zip"
+        mode: '0775'
+
+    - name: "[AWS CLI] Unzip"
+      ansible.builtin.unarchive:
+        src: "/tmp/awscli-bundle.zip"
+        dest: /tmp
+
+    - name: "[AWS CLI] Run Install"
+      ansible.builtin.shell:
+        cmd: "/tmp/aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli"
+
+    - name: "[AWS CLI] Create Checksum of Installer"
+      ansible.builtin.copy:
+        dest: "{{ INSTALLED_HASH_FOLDER }}/awscli"
+        content: "md5sum /tmp/aws.zip"
+
+    - name: "[AWS CLI] Remove Zip File"
+      ansible.builtin.file:
+        path: "/tmp/awscli.zip"
+        state: absent
+
+    - name: "[AWS CLI] Remove Install Folder"
+      ansible.builtin.file:
+        path: "/tmp/aws/"
+        state: absent
+
+  when: hash_file_check.stat.exists == False
