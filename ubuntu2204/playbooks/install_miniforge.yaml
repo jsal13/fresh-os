@@ -1,0 +1,37 @@
+---
+- name: "[Miniforge] Check if installer hash exists"
+  ansible.builtin.stat: 
+    path: "{{ INSTALLED_HASH_FOLDER }}/miniforge"
+  register: hash_file_check
+
+- name: "Install Miniforge Block"
+  block:
+    - name: "[Miniforge] Download Install File"
+      ansible.builtin.get_url:
+        url: "{{ MINIFORGE_LATEST_URL }}"
+        dest: "/tmp/miniforge.sh"
+        mode: '0775'
+
+    - name: "[Miniforge] Run Install"
+      ansible.builtin.script:
+        cmd: "/tmp/miniforge.sh -b -p {{ HOME }}/miniconda"
+
+    - name: "[Miniforge] Configure Install"
+      ansible.builtin.script:
+        cmd: "{{ HOME }}/miniconda/bin/conda config --set always_yes yes --set changeps1 no"
+
+    - name: "[Miniforge] Update"
+      ansible.builtin.script:
+        cmd: "{{ HOME }}/miniconda/bin/conda update -q -y conda"
+
+    - name: "[Miniforge] Create Checksum of Installer"
+      ansible.builtin.copy:
+        dest: "{{ INSTALLED_HASH_FOLDER }}/miniforge"
+        content: "md5sum /tmp/miniforge.sh"
+
+    - name: "[Miniforge] Remove Install Script"
+      ansible.builtin.file:
+        path: "/tmp/miniforge.sh"
+        state: absent
+
+  when: hash_file_check.stat.exists == False

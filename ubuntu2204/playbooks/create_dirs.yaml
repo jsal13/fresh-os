@@ -1,0 +1,6 @@
+---
+- name: "Creating Installed Hash Dir"
+  ansible.builtin.file:
+    path: "{{ INSTALLED_HASH_FOLDER }}"
+    state: directory
+    mode: '0755'

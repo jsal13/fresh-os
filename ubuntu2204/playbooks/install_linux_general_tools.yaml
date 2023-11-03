@@ -1,0 +1,20 @@
+---
+- name: "Installing General Tools w/ Apt-Get"
+  ansible.builtin.apt:
+    autoclean: true
+    install_recommends: false
+    package:
+      - apt-transport-https
+      - age
+      - jq
+      - git
+      - gnupg
+      - gpg
+      - make
+      - net-tools
+      - software-properties-common
+      - tmux
+      - unzip
+      - wget
+      - wireless-tools
+      - zsh
