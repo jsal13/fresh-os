@@ -1,0 +1,16 @@
+---
+# THIS DOES NOT WORK.
+# https://github.com/helm/helm/issues/12047
+- name: "[Helm] Download GPG Key and Install Helm"
+  block:
+    - name: "[Helm] Get GPG Key"
+      ansible.builtin.get_url:
+        url: https://baltocdn.com/helm/signing.asc
+        dest: /etc/apt/keyrings/helm.gpg
+        mode: '0644'
+
+    - name: "[Helm] Install"
+      ansible.builtin.apt_repository:
+        repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main"
+        update_cache: yes
+        state: present

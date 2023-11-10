@@ -18,8 +18,8 @@ Testing can be done somewhat manually via a Docker container to see if everythin
 2. **Inside Docker**:
 
     ```shell
-    cd ubuntu2204  # cd into the playbook to test
-    ansible-playbook -i ../hosts main.yaml
+    # Using whatever playbook at the end
+    ansible-playbook -i hosts ubuntu2204/main.yaml
     ```
 
 3. Make sure it has installed everything you want it to install!
