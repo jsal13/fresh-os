@@ -1,5 +1,5 @@
 ---
 - name: "[Pip] Install Pip Packages"
   ansible.builtin.pip:
-    requirements: /my_app/requirements.txt
+    requirements: "{{ playbook_dir }}/data/requirements.txt"
     executable: "{{ HOME }}/miniconda/bin/pip"
