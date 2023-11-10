@@ -1,0 +1,27 @@
+---
+# Adapted from https://github.com/diodonfrost/ansible-role-terraform/tree/42cbbc9bbf0300c1eae0568c40e178e617165ef1
+- name: "[Terraform] Find all versions of Terraform"
+  ansible.builtin.uri:
+    url: https://releases.hashicorp.com/terraform/index.json
+    return_content: true
+  register: terraform_index
+  check_mode: false
+
+- name: "[Terraform] Finds the latest Terraform version when latest var is defined"
+  ansible.builtin.set_fact:
+    terraform_version: "{{ (terraform_index.content | from_json).versions | reject('search', '-') | list | community.general.version_sort | last }}"
+
+# This task avoids downloading Terraform every time
+- name: "[Terraform] Check if Terraform is present with the right version"
+  ansible.builtin.command: "{{ terraform_path }}/terraform -version"
+  register: terraform_installed_version
+  ignore_errors: true
+  changed_when: false
+  failed_when: false
+
+- name: "[Terraform] Install Terraform"
+  ansible.builtin.unarchive:
+    src: "{{ terraform_pkg_url }}"
+    dest: "{{ terraform_path }}"
+    remote_src: true
+  when: terraform_version not in ( terraform_installed_version.stdout_lines | default(['empty'], true) | first )
