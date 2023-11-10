@@ -24,3 +24,7 @@
     - name: "AWS CLI"
       ansible.builtin.import_tasks:
         file: ./playbooks/install_aws_cli.yaml
+
+    - name: "Pip Packages"
+      ansible.builtin.import_tasks:
+        file: ./playbooks/install_pip_packages.yaml
