@@ -7,6 +7,8 @@ OH_MY_ZSH_LATEST_URL: https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/instal
 MINIFORGE_LATEST_URL: https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
 AWS_CLI_LATEST_URL: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
 
-terraform_version: latest
-terraform_pkg_url: "https://releases.hashicorp.com/terraform/{{ terraform_version }}/terraform_{{ terraform_version }}_linux_amd64.zip"
-terraform_path: /usr/local/bin/
+TERRAFORM_VERSION: latest
+TERRAFORM_PKG_URL: "https://releases.hashicorp.com/terraform/{{ TERRAFORM_VERSION }}/terraform_{{ TERRAFORM_VERSION }}_linux_amd64.zip"
+TERRAFORM_PATH: /usr/local/bin/
+
+GOLANG_LATESL_URL: https://go.dev/dl/go1.21.4.linux-amd64.tar.gz

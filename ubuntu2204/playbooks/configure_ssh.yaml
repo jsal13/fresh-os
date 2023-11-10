@@ -1,0 +1,6 @@
+---
+- name: "[SSH] Add Github to known hosts"
+  ansible.builtin.shell:
+    cmd: |
+      mkdir -p $HOME/.ssh \
+      && ssh-keyscan github.com >> $HOME/.ssh/known_hosts

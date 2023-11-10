@@ -5,34 +5,17 @@
   become: true
   tasks:
 
-    - name: "Create Directories"
-      ansible.builtin.import_tasks:
-        file: ./playbooks/create_dirs.yaml
-
-    - name: "General Tools with Apt-Get"
-      ansible.builtin.import_tasks:
-        file: ./playbooks/install_linux_general_tools.yaml
-
-    # - name: "OMZ"
-    #   ansible.builtin.import_tasks:
-    #     file: ./playbooks/install_omz.yaml
-
-    # - name: "Miniforge"
-    #   ansible.builtin.import_tasks:
-    #     file: ./playbooks/install_miniforge.yaml
-
-    # - name: "AWS CLI"
-    #   ansible.builtin.import_tasks:
-    #     file: ./playbooks/install_aws_cli.yaml
-
-    # - name: "Pip Packages"
-    #   ansible.builtin.import_tasks:
-    #     file: ./playbooks/install_pip_packages.yaml
-
-    # - name: "Terraform"
-    #   ansible.builtin.import_tasks:
-    #     file: ./playbooks/install_terraform.yaml
-
-    - name: "Helm"
-      ansible.builtin.import_tasks:
-        file: ./playbooks/install_helm.yaml
+    - name: "{{ item }}"
+      ansible.builtin.include_tasks: "./playbooks/{{ item }}.yaml"
+      loop:
+        - create_dirs
+        - configure_ssh
+        - add_to_path
+        # - install_omz
+        # - install_miniforge
+        # - install_aws_cli
+        # - install_pip_packages
+        # - install_terraform
+        # - install_helm
+        - install_golang
+        - install_k8s
