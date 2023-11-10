@@ -23,3 +23,8 @@ Testing can be done somewhat manually via a Docker container to see if everythin
     ```
 
 3. Make sure it has installed everything you want it to install!
+
+## TODO
+
+1. Adding SSH stuff is not idempotent.
+2. Env stuff is weird ("go", "conda", and a few others aren't on PATH.)

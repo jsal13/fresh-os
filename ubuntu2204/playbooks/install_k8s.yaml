@@ -1,0 +1,23 @@
+---
+- name: "[K3D] Check K3d Install"
+  ansible.builtin.command:
+    cmd: k3d --version
+  ignore_errors: true
+  register: k3d_result
+
+- name: "[K3D] Install K3d"
+  ansible.builtin.shell:
+    cmd: "wget -q -O - https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash"
+  when: k3d_result.rc != 0
+
+- name: "[K9s] Install K9s"
+  become: true
+  ansible.builtin.shell:
+    cmd: |
+      cd /tmp \
+      && git clone https://github.com/derailed/k9s.git --depth=1 && \
+      cd k9s && \
+      make build && \
+      mv ./execs/k9s /usr/local/bin && \
+      cd .. && \
+      rm -rf k9s

@@ -1,0 +1,16 @@
+---
+# TODO: We alias go here, we should do it on PATH.
+- name: "[Go] Check Go Install"
+  ansible.builtin.shell:
+    cmd: go version
+  ignore_errors: true
+  register: go_result
+
+- name: "[GO] Install Golang"
+  ansible.builtin.shell:
+    cmd: |
+      cd /tmp \
+      && curl -Lo /tmp/golang.tar.gz {{GOLANG_LATESL_URL}} \
+      && tar -C /usr/local -xzf /tmp/golang.tar.gz \
+      && rm -rf /tmp/go.tar.gz
+  when: go_result.rc != 0
