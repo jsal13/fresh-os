@@ -48,7 +48,7 @@
         - install_terraform
         - install_terraformer
         - install_k8s
-        - install_helm
+        # - install_helm  # DOES NOT WORK, see file for details.
 
 - name: Cleanup
   hosts: localhost

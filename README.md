@@ -10,8 +10,7 @@ To get into a Python venv with ansible deps, use
 
 ```shell
 just env
-``
-
+```
 
 ## Testing
 
@@ -27,7 +26,6 @@ Testing can be done somewhat manually via a Docker container to see if everythin
 2. **Inside Docker**:
 
     ```shell
-    # Using whatever playbook at the end
     ansible-playbook -i hosts ubuntu2204/main.yaml
     ```
 
@@ -35,5 +33,8 @@ Testing can be done somewhat manually via a Docker container to see if everythin
 
 ## TODO
 
-1. Adding SSH stuff is not idempotent.
-2. Env stuff is weird ("go", "conda", and a few others aren't on PATH.)
+1. We're probably going to need this stuff to not _all_ be installed with root.
+
+2. Conda doesn't put its stuff into bashrc.
+
+3. We never change the shell to zsh in this script.
