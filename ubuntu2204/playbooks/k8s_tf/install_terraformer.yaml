@@ -1,0 +1,17 @@
+---
+# Updated: 2023-11-19
+
+# REF: https://github.com/GoogleCloudPlatform/terraformer/tree/master
+- name: "[Terraformer] Check if Terraformer exists"
+  ansible.builtin.shell: 
+    cmd: ". ~/.bashrc && terraformer -v"
+  ignore_errors: true
+  register: terraformer_result
+
+- name: "[Terraformer] Install Terraformer"
+  ansible.builtin.shell:
+    cmd: |
+      curl -LO "{{ TERRAFORMER_PKG_URL }} | grep tag_name | cut -d '"' -f 4)/terraformer-all-linux-amd64"
+      chmod +x terraformer-all-linux-amd64
+      mv terraformer-all-linux-amd64 /usr/local/bin/terraformer
+  when: terraformer_result.rc != 0

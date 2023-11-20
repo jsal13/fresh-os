@@ -1,0 +1,18 @@
+---
+# Updated: 2023-11-19
+
+# REF: https://github.com/getsops/sops
+- name: "[SOPS] Check if SOPS exists"
+  ansible.builtin.shell: 
+    cmd: ". ~/.bashrc && sops -v"
+  ignore_errors: true
+  register: sops_result
+
+- name: "[SOPS] Install SOPS"
+  ansible.builtin.shell:
+    cmd: |
+      SOPS_LATEST_VERSION=$(curl -Ls "{{SOPS_VERSIONS_URL}}" | grep -Po '"tag_name": "v\K[0-9.]+') \
+      && curl -Lo sops.deb "https://github.com/mozilla/sops/releases/latest/download/sops_${SOPS_LATEST_VERSION}_amd64.deb" \
+      && apt --fix-broken install ./sops.deb \
+      && rm -rf sops.deb
+  when: sops_result.rc != 0

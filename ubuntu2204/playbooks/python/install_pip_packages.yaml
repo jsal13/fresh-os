@@ -1,0 +1,21 @@
+---
+# Updated: 2023-11-19
+
+- name: "[Pip] Install Pip Packages"
+  ansible.builtin.pip:
+    requirements: "{{ playbook_dir }}/data/requirements.txt"
+    executable: "{{ HOME }}/miniconda/bin/pip"
+
+- name: "[Pip] Check if Poetry exists"
+  ansible.builtin.shell: 
+    cmd: ". ~/.bashrc && poetry --version"
+  ignore_errors: true
+  register: poetry_result
+
+- name: "[Pip] Install Poetry"
+  ansible.builtin.shell:
+    cmd: |
+      . ~/.bashrc \
+      && curl -sSL https://install.python-poetry.org | {{ HOME }}/miniconda/bin/python - \
+      && echo "export PATH=\"/root/.local/bin:$PATH\"" >> ~/.bashrc
+  when: poetry_result.rc != 0

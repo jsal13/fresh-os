@@ -1,22 +1,61 @@
 ---
-- name: Install JSalv Desktop Applications
+- name: Basic Configuration
   hosts: localhost
   connection: local
   become: true
   tasks:
-
     - name: "{{ item }}"
-      ansible.builtin.include_tasks: "./playbooks/{{ item }}.yaml"
+      ansible.builtin.include_tasks: "./playbooks/basic_config/{{ item }}.yaml"
       loop:
         - create_dirs
         - configure_ssh
         - add_to_path
-        # - install_omz
-        - install_miniforge
-        # - install_aws_cli
-        # - install_pip_packages
-        # - install_terraform
-        # - install_helm
-        - install_golang
-        - install_k8s
+
+- name: Install Basic Applications and Tools
+  hosts: localhost
+  connection: local
+  become: true
+  tasks:
+    - name: "{{ item }}"
+      ansible.builtin.include_tasks: "./playbooks/basic_apps_and_tools/{{ item }}.yaml"
+      loop:
+        - install_linux_general_tools
+        - install_aws_cli
         - install_node
+        - install_omz
+        - install_golang
+        - install_sops  # Requires golang
+
+- name: Install Python and Related Packages
+  hosts: localhost
+  connection: local
+  become: true
+  tasks:
+    - name: "{{ item }}"
+      ansible.builtin.include_tasks: "./playbooks/python/{{ item }}.yaml"
+      loop:
+        - install_miniforge
+        - install_pip_packages
+
+- name: Install K8s, Terraform, and Related Packages
+  hosts: localhost
+  connection: local
+  become: true
+  tasks:
+    - name: "{{ item }}"
+      ansible.builtin.include_tasks: "./playbooks/k8s_tf/{{ item }}.yaml"
+      loop:
+        - install_terraform
+        - install_terraformer
+        - install_k8s
+        - install_helm
+
+- name: Cleanup
+  hosts: localhost
+  connection: local
+  become: true
+  tasks:
+    - name: "{{ item }}"
+      ansible.builtin.include_tasks: "./playbooks/cleanup/{{ item }}.yaml"
+      loop:
+        - cleanup
