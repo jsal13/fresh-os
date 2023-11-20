@@ -4,6 +4,15 @@ Ansible files to set up my PCs when I reinstall Windows or whatever.
 
 ## Quickstart
 
+## Modifying Ansible Files
+
+To get into a Python venv with ansible deps, use
+
+```shell
+just env
+``
+
+
 ## Testing
 
 Testing can be done somewhat manually via a Docker container to see if everything installs correctly.

@@ -1,0 +1,21 @@
+---
+# Updated: 2023-11-19
+
+- name: "[Node] Check Node Install"
+  ansible.builtin.shell:
+    cmd: . ~/.bashrc && node -v
+  ignore_errors: true
+  register: node_result
+
+- name: "[Node] Install NVM"
+  ansible.builtin.shell:
+    cmd: "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash"
+  when: node_result.rc != 0
+
+- name: "[Node] Install Node"
+  become: true
+  ansible.builtin.shell:
+    cmd: |
+      . ~/.bashrc \
+      && nvm install node
+  when: node_result.rc != 0

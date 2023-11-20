@@ -12,10 +12,11 @@
         - configure_ssh
         - add_to_path
         # - install_omz
-        # - install_miniforge
+        - install_miniforge
         # - install_aws_cli
         # - install_pip_packages
         # - install_terraform
         # - install_helm
         - install_golang
         - install_k8s
+        - install_node
