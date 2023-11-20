@@ -1,8 +1,11 @@
 ---
-- name: "[Miniforge] Check if installer hash exists"
-  ansible.builtin.stat: 
-    path: "{{ INSTALLED_HASH_FOLDER }}/miniforge"
-  register: hash_file_check
+# Updated: 2023-11-19
+
+- name: "[Miniforge] Check if Conda exists"
+  ansible.builtin.shell: 
+    cmd: ". ~/.bashrc && {{ HOME }}/miniconda/bin/conda"
+  ignore_errors: true
+  register: conda_result
 
 - name: "Install Miniforge Block"
   block:
@@ -34,4 +37,4 @@
         path: "/tmp/miniforge.sh"
         state: absent
 
-  when: hash_file_check.stat.exists == False
+  when: conda_result.rc != 0

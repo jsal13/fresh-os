@@ -1,4 +1,6 @@
 ---
+# Updated: 2023-11-19
+
 - name: "[AWS CLI] Check if installer hash exists"
   ansible.builtin.stat: 
     path: "{{ INSTALLED_HASH_FOLDER }}/awscli"

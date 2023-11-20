@@ -1,4 +1,6 @@
 ---
+# Updated: 2023-11-19
+
 # Adapted from https://github.com/diodonfrost/ansible-role-terraform/tree/42cbbc9bbf0300c1eae0568c40e178e617165ef1
 - name: "[Terraform] Find all versions of Terraform"
   ansible.builtin.uri:
