@@ -13,19 +13,4 @@
       curl -Ls -O https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh \
       && ./install.sh \
       && rm install.sh
-
-    # - name: "[OMZ] Download Install File"
-    #   ansible.builtin.get_url:
-    #     url: "{{ OH_MY_ZSH_LATEST_URL }}"
-    #     dest: "/tmp/omzsh.sh"
-    #     mode: "0775"
-
-    # - name: "[OMZ] Run Install"
-    #   ansible.builtin.script:
-    #     cmd: "/tmp/omzsh.sh --unattended"
-
-    # - name: "[OMZ] Remove Install Script"
-    #   ansible.builtin.file:
-    #     path: "/tmp/omzsh.sh"
-    #     state: absent
   when: omz_result.rc != 0
