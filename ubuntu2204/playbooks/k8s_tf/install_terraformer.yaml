@@ -3,8 +3,8 @@
 
 # REF: https://github.com/GoogleCloudPlatform/terraformer/tree/master
 - name: "[Terraformer] Check if Terraformer exists"
-  ansible.builtin.shell: 
-    cmd: ". ~/.bashrc && terraformer -v"
+  ansible.builtin.shell:
+    cmd: ". {{ HOME }}/.bashrc && terraformer -v"
   ignore_errors: true
   register: terraformer_result
 

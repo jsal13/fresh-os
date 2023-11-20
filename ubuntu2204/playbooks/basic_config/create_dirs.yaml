@@ -1,12 +1,6 @@
 ---
-- name: "Creating Installed Hash Dir"
-  ansible.builtin.file:
-    path: "{{ INSTALLED_HASH_FOLDER }}"
-    state: directory
-    mode: '0755'
-
 - name: "Creating Repos Dir"
   ansible.builtin.file:
     path: "{{ HOME }}/repos"
     state: directory
-    mode: '0755'
+    mode: "0755"

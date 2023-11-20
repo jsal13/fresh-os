@@ -2,19 +2,17 @@
 - name: Basic Configuration
   hosts: localhost
   connection: local
-  become: true
   tasks:
     - name: "{{ item }}"
       ansible.builtin.include_tasks: "./playbooks/basic_config/{{ item }}.yaml"
       loop:
+        - create_users
         - create_dirs
         - configure_ssh
-        - add_to_path
 
 - name: Install Basic Applications and Tools
   hosts: localhost
   connection: local
-  become: true
   tasks:
     - name: "{{ item }}"
       ansible.builtin.include_tasks: "./playbooks/basic_apps_and_tools/{{ item }}.yaml"
@@ -29,7 +27,6 @@
 - name: Install Python and Related Packages
   hosts: localhost
   connection: local
-  become: true
   tasks:
     - name: "{{ item }}"
       ansible.builtin.include_tasks: "./playbooks/python/{{ item }}.yaml"
@@ -40,7 +37,6 @@
 - name: Install K8s, Terraform, and Related Packages
   hosts: localhost
   connection: local
-  become: true
   tasks:
     - name: "{{ item }}"
       ansible.builtin.include_tasks: "./playbooks/k8s_tf/{{ item }}.yaml"
@@ -53,7 +49,6 @@
 - name: Cleanup
   hosts: localhost
   connection: local
-  become: true
   tasks:
     - name: "{{ item }}"
       ansible.builtin.include_tasks: "./playbooks/cleanup/{{ item }}.yaml"

@@ -1,12 +1,12 @@
 ---
 # Updated: 2023-11-19
 
-# Note: We use a gross hack here.  
-# We can't source bashrc for subsequent tasks, so we need 
-# to call `. ~/.bashrc &&` for anything that needs to use `go`.
+# Note: We use a gross hack here.
+# We can't source bashrc for subsequent tasks, so we need
+# to call `. {{ HOME }}/.bashrc &&` for anything that needs to use `go`.
 - name: "[Go] Check Go Install"
   ansible.builtin.shell:
-    cmd: . ~/.bashrc && go version
+    cmd: . {{ HOME }}/.bashrc && go version
   ignore_errors: true
   register: go_result
 
@@ -19,5 +19,5 @@
       && curl -Lo /tmp/golang.tar.gz {{GOLANG_LATESL_URL}} \
       && tar -C /usr/local -xzf /tmp/golang.tar.gz \
       && rm -rf /tmp/go* \
-      && echo "export PATH=$PATH:/usr/local/go/bin" >> ~/.bashrc
+      && echo "export PATH=$PATH:/usr/local/go/bin" >> {{ HOME }}/.bashrc
   when: go_result.rc != 0

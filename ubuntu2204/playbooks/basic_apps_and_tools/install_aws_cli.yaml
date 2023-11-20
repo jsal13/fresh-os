@@ -2,8 +2,8 @@
 # Updated: 2023-11-19
 
 - name: "[AWS CLI] Check if AWS CLI exists"
-  ansible.builtin.shell: 
-    cmd: . ~/.bashrc && aws --version
+  ansible.builtin.shell:
+    cmd: . {{ HOME }}/.bashrc && aws --version
   ignore_errors: true
   register: awscli_result
 
