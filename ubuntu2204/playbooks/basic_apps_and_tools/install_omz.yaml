@@ -10,7 +10,9 @@
 - name: "Install OMZ Block"
   ansible.builtin.shell:
     cmd: |
-      curl -Ls -O https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh \
-      && ./install.sh \
-      && rm install.sh
+      cd /tmp \
+      && curl -Ls -O https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh \
+      && chmod +x /tmp/install.sh \
+      && /tmp/install.sh \
+      && rm /tmp/install.sh
   when: omz_result.rc != 0
