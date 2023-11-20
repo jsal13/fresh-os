@@ -1,0 +1,20 @@
+---
+# Updated: 2023-11-19
+
+- name: "[AWS CLI] Check if AWS CLI exists"
+  ansible.builtin.shell: 
+    cmd: . ~/.bashrc && aws --version
+  ignore_errors: true
+  register: awscli_result
+
+- name: "Install AWS CLI Block"
+  block:
+    - name: "[AWS CLI] Install AWS /usr/local/aws-cli"
+      ansible.builtin.shell:
+        cmd: |
+          curl {{ AWS_CLI_LATEST_URL }} -o /tmp/awscliv2.zip \
+          && cd /tmp \
+          && unzip -q /tmp/awscliv2.zip \
+          && /tmp/aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli \
+          && rm -rf /tmp/aws*
+  when: awscli_result.rc != 0

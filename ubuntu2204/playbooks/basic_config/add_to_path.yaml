@@ -1,4 +1,6 @@
 ---
+# TODO: Unsure what this does.
+
 - name: Create user_created_paths.sh
   ansible.builtin.file:
     path: /etc/profile.d/user_created_paths.sh

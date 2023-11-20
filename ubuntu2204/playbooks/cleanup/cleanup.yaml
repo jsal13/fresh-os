@@ -1,0 +1,6 @@
+---
+- name: "[CLEANUP] Cleaning Up"
+  ansible.builtin.shell:
+    cmd: |
+      apt-get -y autoremove
+

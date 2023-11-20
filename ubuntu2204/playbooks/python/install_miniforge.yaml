@@ -17,20 +17,10 @@
 
     - name: "[Miniforge] Run Install"
       ansible.builtin.script:
-        cmd: "/tmp/miniforge.sh -b -p {{ HOME }}/miniconda"
-
-    - name: "[Miniforge] Configure Install"
-      ansible.builtin.script:
-        cmd: "{{ HOME }}/miniconda/bin/conda config --set always_yes yes --set changeps1 no"
-
-    - name: "[Miniforge] Update"
-      ansible.builtin.script:
-        cmd: "{{ HOME }}/miniconda/bin/conda update -q -y conda"
-
-    - name: "[Miniforge] Create Checksum of Installer"
-      ansible.builtin.copy:
-        dest: "{{ INSTALLED_HASH_FOLDER }}/miniforge"
-        content: "md5sum /tmp/miniforge.sh"
+        cmd: |
+          /tmp/miniforge.sh -b -p {{ HOME }}/miniconda \
+          && {{ HOME }}/miniconda/bin/conda config --set always_yes yes --set changeps1 no \
+          && {{ HOME }}/miniconda/bin/conda update -q -y conda
 
     - name: "[Miniforge] Remove Install Script"
       ansible.builtin.file:
