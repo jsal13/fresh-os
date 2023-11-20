@@ -3,12 +3,13 @@
 
 # REF: https://github.com/getsops/sops
 - name: "[SOPS] Check if SOPS exists"
-  ansible.builtin.shell: 
-    cmd: ". ~/.bashrc && sops -v"
+  ansible.builtin.shell:
+    cmd: ". {{ HOME }}/.bashrc && sops -v"
   ignore_errors: true
   register: sops_result
 
 - name: "[SOPS] Install SOPS"
+  become: true
   ansible.builtin.shell:
     cmd: |
       SOPS_LATEST_VERSION=$(curl -Ls "{{SOPS_VERSIONS_URL}}" | grep -Po '"tag_name": "v\K[0-9.]+') \

@@ -1,30 +1,31 @@
 ---
 # Updated: 2023-11-19
 
-- name: "[OMZ] Check if installer hash exists"
-  ansible.builtin.stat: 
-    path: "{{ INSTALLED_HASH_FOLDER }}/omz"
-  register: hash_file_check
+- name: "[OMZ] Check if OMZ is installed"
+  ansible.builtin.shell:
+    cmd: ". {{ HOME }}/.bashrc && omz version"
+  ignore_errors: true
+  register: omz_result
 
 - name: "Install OMZ Block"
-  block:
-    - name: "[OMZ] Download Install File"
-      ansible.builtin.get_url:
-        url: "{{ OH_MY_ZSH_LATEST_URL }}"
-        dest: "/tmp/omzsh.sh"
-        mode: '0775'
+  ansible.builtin.shell:
+    cmd: |
+      curl -Ls -O https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh \
+      && ./install.sh \
+      && rm install.sh
 
-    - name: "[OMZ] Run Install"
-      ansible.builtin.script:
-        cmd: "/tmp/omzsh.sh --unattended"
+    # - name: "[OMZ] Download Install File"
+    #   ansible.builtin.get_url:
+    #     url: "{{ OH_MY_ZSH_LATEST_URL }}"
+    #     dest: "/tmp/omzsh.sh"
+    #     mode: "0775"
 
-    - name: "[OMZ] Create Checksum of Installer"
-      ansible.builtin.copy:
-        dest: "{{ INSTALLED_HASH_FOLDER }}/omz"
-        content: "md5sum /tmp/omzsh.sh"
+    # - name: "[OMZ] Run Install"
+    #   ansible.builtin.script:
+    #     cmd: "/tmp/omzsh.sh --unattended"
 
-    - name: "[OMZ] Remove Install Script"
-      ansible.builtin.file:
-        path: "/tmp/omzsh.sh"
-        state: absent
-  when: hash_file_check.stat.exists == False
+    # - name: "[OMZ] Remove Install Script"
+    #   ansible.builtin.file:
+    #     path: "/tmp/omzsh.sh"
+    #     state: absent
+  when: omz_result.rc != 0

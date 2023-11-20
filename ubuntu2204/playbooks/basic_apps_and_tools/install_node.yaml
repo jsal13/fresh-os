@@ -3,7 +3,7 @@
 
 - name: "[Node] Check Node Install"
   ansible.builtin.shell:
-    cmd: . ~/.bashrc && node -v
+    cmd: ". {{ HOME }}/.bashrc && node -v"
   ignore_errors: true
   register: node_result
 
@@ -13,9 +13,8 @@
   when: node_result.rc != 0
 
 - name: "[Node] Install Node"
-  become: true
   ansible.builtin.shell:
     cmd: |
-      . ~/.bashrc \
+      . {{ HOME }}/.bashrc \
       && nvm install node
   when: node_result.rc != 0

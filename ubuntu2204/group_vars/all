@@ -1,3 +1,5 @@
+ansible_user: "james"
+
 HOME: "{{ansible_env.HOME}}"
 
 # Dir to put hashes in so that we don't keep downloading or doing tasks we've already pulled / installed.

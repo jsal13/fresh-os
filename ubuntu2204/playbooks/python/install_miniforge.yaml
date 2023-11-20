@@ -2,8 +2,8 @@
 # Updated: 2023-11-19
 
 - name: "[Miniforge] Check if Conda exists"
-  ansible.builtin.shell: 
-    cmd: ". ~/.bashrc && {{ HOME }}/miniconda/bin/conda"
+  ansible.builtin.shell:
+    cmd: ". {{ HOME }}/.bashrc && {{ HOME }}/miniconda/bin/conda"
   ignore_errors: true
   register: conda_result
 
@@ -13,7 +13,7 @@
       ansible.builtin.get_url:
         url: "{{ MINIFORGE_LATEST_URL }}"
         dest: "/tmp/miniforge.sh"
-        mode: '0775'
+        mode: "0775"
 
     - name: "[Miniforge] Run Install"
       ansible.builtin.script:
