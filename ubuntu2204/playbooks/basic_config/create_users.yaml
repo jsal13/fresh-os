@@ -1,6 +1,6 @@
----
-- name: Add the user 'james' with a bash shell.
-  become: true
-  ansible.builtin.user:
-    name: james
-    shell: /bin/bash
+# ---
+# - name: Add the user 'james' with a bash shell.
+#   become: true
+#   ansible.builtin.user:
+#     name: james
+#     shell: /bin/bash

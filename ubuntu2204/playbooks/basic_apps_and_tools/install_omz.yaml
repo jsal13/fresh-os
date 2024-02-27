@@ -7,12 +7,19 @@
   ignore_errors: true
   register: omz_result
 
-- name: "Install OMZ Block"
-  ansible.builtin.shell:
-    cmd: |
-      cd /tmp \
-      && curl -Ls -O https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh \
-      && chmod +x /tmp/install.sh \
-      && /tmp/install.sh \
-      && rm /tmp/install.sh
+# - name: "Install OMZ Block"
+#   ansible.builtin.shell:
+#     cmd: |
+#       cd /tmp \
+#       && curl -Ls -O https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh \
+#       && chmod +x /tmp/install.sh \
+#       && /tmp/install.sh \
+#       && rm /tmp/install.sh
+#   when: omz_result.rc != 0
+
+- name: Install Oh My Zsh # noqa: latest
+  ansible.builtin.git:
+    repo: https://github.com/ohmyzsh/ohmyzsh.git
+    dest: ~/.oh-my-zsh
+    depth: 1
   when: omz_result.rc != 0
