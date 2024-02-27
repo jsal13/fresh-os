@@ -4,6 +4,34 @@ Ansible files to set up my PCs when I reinstall Windows or whatever.
 
 ## Quickstart
 
+### General Quickstart for WSL
+
+If you've already got a Windows install with SSH and you're reinstalling WSL stuff, great.  If not, you'll need to do the appropriate SSH stuff to get github to work.  This assumes you have github access.
+
+```shell
+cp -r /mnt/c/Users/james/.ssh ~  # your use name.
+chmod 600 ~/.ssh/id_rsa
+
+# Install dotfile repo.  Skip if you aren't me.
+git init
+git checkout -b main
+git remote add origin git@github.com:jsal13/dotfiles
+git pull origin main
+
+# Annoying Thing: we need a sudo password
+# for ansible.
+# REF: https://github.com/jsal13/ansible-setup/issues/7
+sudo ls  # Put in the sudo password here.
+
+# Get ansible stuff.
+sudo apt update
+sudo add-apt-repository --yes --update ppa:ansible/ansible
+sudo apt install -y ansible software-properties-common
+git clone ssh://git@github.com/jsal13/ansible
+cd ansible/ubuntu2204
+ansible-playbook -i hosts main.yaml
+```
+
 ## Modifying Ansible Files
 
 To get into a Python venv with ansible deps, use

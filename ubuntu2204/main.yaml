@@ -6,7 +6,7 @@
     - name: "{{ item }}"
       ansible.builtin.include_tasks: "./playbooks/basic_config/{{ item }}.yaml"
       loop:
-        - create_users
+        # - create_users
         - create_dirs
         - configure_ssh
 

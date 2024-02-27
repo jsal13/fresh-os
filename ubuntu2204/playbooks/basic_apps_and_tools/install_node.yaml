@@ -19,6 +19,7 @@
 - name: "[Node] Install Node"
   ansible.builtin.shell:
     cmd: |
-      . {{ HOME }}/.bashrc \
+      . ~/.nvm/nvm.sh \
+      && . {{ HOME }}/.bashrc \
       && nvm install node
   when: node_result.rc != 0

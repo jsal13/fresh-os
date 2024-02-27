@@ -22,6 +22,7 @@
   failed_when: false
 
 - name: "[Terraform] Install Terraform"
+  become: true
   ansible.builtin.unarchive:
     src: "{{ TERRAFORM_PKG_URL }}"
     dest: "{{ TERRAFORM_PATH }}"

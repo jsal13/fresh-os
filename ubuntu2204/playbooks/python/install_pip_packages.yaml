@@ -17,5 +17,5 @@
     cmd: |
       . {{ HOME }}/.bashrc \
       && curl -sSL https://install.python-poetry.org | {{ HOME }}/miniconda/bin/python - \
-      && echo "export PATH=\$PATH:\"/root/.local/bin:\"" >> {{ HOME }}/.bashrc
+      && echo "export PATH=\$PATH:\"/root/.local/bin:{{ HOME }}/miniconda/bin\"" >> {{ HOME }}/.bashrc
   when: poetry_result.rc != 0
