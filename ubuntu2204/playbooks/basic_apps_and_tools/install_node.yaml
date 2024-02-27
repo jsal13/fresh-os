@@ -1,5 +1,5 @@
 ---
-# Updated: 2023-11-19
+# Updated: 2023-02-27
 
 - name: "[Node] Check Node Install"
   ansible.builtin.shell:
@@ -7,9 +7,13 @@
   ignore_errors: true
   register: node_result
 
+# If you get an error here, you may have to update the version of nvm.
+# See: https://github.com/nvm-sh/nvm
 - name: "[Node] Install NVM"
-  ansible.builtin.shell:
-    cmd: "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash"
+  ansible.builtin.shell: >
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+  args:
+    creates: "{{ HOME }}/.nvm/nvm.sh"
   when: node_result.rc != 0
 
 - name: "[Node] Install Node"
