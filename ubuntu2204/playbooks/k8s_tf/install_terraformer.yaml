@@ -13,8 +13,9 @@
   become: true
   ansible.builtin.shell:
     cmd: |
-      curl -LO "{{ TERRAFORMER_PKG_URL }} | grep tag_name | cut -d '"' -f 4)/terraformer-all-linux-amd64"
-      chmod +x terraformer-all-linux-amd64
-      mv terraformer-all-linux-amd64 /usr/local/bin/terraformer
-      rm -f terraformer-all-linux-amd64
+      rm -rf /tmp/terraformer* \
+      && curl -L "{{ TERRAFORMER_PKG_URL }} | grep tag_name | cut -d '"' -f 4)/terraformer-all-linux-amd64" -o /tmp/terraformer \
+      && chmod +x /tmp/terraformer \
+      && mv /tmp/terraformer /usr/local/bin/terraformer \
+      && rm -f /tmp/terraformer
   when: terraformer_result.rc != 0
