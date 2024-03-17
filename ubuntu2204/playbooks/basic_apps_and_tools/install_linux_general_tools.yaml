@@ -9,7 +9,9 @@
     package:
       - apt-transport-https
       - age
+      - build-essential
       - jq
+      - gcc
       - git
       - gnupg
       - gpg
