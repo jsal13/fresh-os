@@ -1,0 +1,8 @@
+---
+- name: "[Docker Config] Add Docker Group"
+  become: true
+  ignore_errors: true
+  ansible.builtin.shell:
+    cmd: |
+      groupadd docker \
+      && usermod -aG docker ${USER_NAME}

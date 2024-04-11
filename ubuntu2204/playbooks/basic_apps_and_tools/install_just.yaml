@@ -1,0 +1,13 @@
+---
+# Updated: 2024-04-11
+
+- name: "[Just] Check if Just is installed"
+  ansible.builtin.shell:
+    cmd: ". {{ HOME }}/.bashrc && just --version"
+  ignore_errors: true
+  register: just_result
+
+- name: Install Just
+  ansible.builtin.shell:
+    cmd: "conda install -c conda-forge just"
+  when: just_result.rc != 0

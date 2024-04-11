@@ -7,14 +7,20 @@
   ignore_errors: true
   register: node_result
 
-# # If you get an error here, you may have to update the version of nvm.
-# # See: https://github.com/nvm-sh/nvm
-# - name: "[Node] Install NVM"
-#   ansible.builtin.shell: >
-#     curl -o- {{ NVM_LATEST_URL }} | bash
-#   args:
-#     creates: "{{ HOME }}/.nvm/nvm.sh"
-#   when: node_result.rc != 0
+- name: "[Node] Check NVM Install"
+  ansible.builtin.shell:
+    cmd: ". {{ HOME }}/.bashrc && nvm -v"
+  ignore_errors: true
+  register: nvm_result
+
+# If you get an error here, you may have to update the version of nvm.
+# See: https://github.com/nvm-sh/nvm
+- name: "[Node] Install NVM"
+  ansible.builtin.shell: >
+    curl -o- {{ NVM_LATEST_URL }} | bash
+  args:
+    creates: "{{ HOME }}/.nvm/nvm.sh"
+  when: nvm_result.rc != 0
 
 # - name: "[Node] Install Node"
 #   ansible.builtin.shell:
