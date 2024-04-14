@@ -7,11 +7,11 @@ INSTALLED_HASH_FOLDER: "{{HOME}}/.installed_hashes_jsalv"
 
 AWS_CLI_LATEST_URL: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
 
-GOLANG_LATESL_URL: https://go.dev/dl/go1.21.4.linux-amd64.tar.gz
+GOLANG_LATEST_URL: https://go.dev/dl/go1.21.4.linux-amd64.tar.gz
 
 MINIFORGE_LATEST_URL: https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
 
-NVM_LATEST_URL: https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh
+NVM_LATEST_URL: https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh
 
 OH_MY_ZSH_LATEST_URL: https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 
@@ -25,3 +25,5 @@ TERRAFORM_PKG_URL: "https://releases.hashicorp.com/terraform/{{ TERRAFORM_VERSIO
 TERRAFORM_PATH: /usr/local/bin/
 
 TERRAFORMER_PKG_URL: "https://github.com/GoogleCloudPlatform/terraformer/releases/download/$(curl -s https://api.github.com/repos/GoogleCloudPlatform/terraformer/releases/latest"
+
+USER_NAME: "james"

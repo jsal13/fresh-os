@@ -1,21 +1,11 @@
 ---
-# Updated: 2023-11-19
+# Updated: 2024-04-11
 
 - name: "[OMZ] Check if OMZ is installed"
   ansible.builtin.shell:
     cmd: ". {{ HOME }}/.bashrc && omz version"
   ignore_errors: true
   register: omz_result
-
-# - name: "Install OMZ Block"
-#   ansible.builtin.shell:
-#     cmd: |
-#       cd /tmp \
-#       && curl -Ls -O https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh \
-#       && chmod +x /tmp/install.sh \
-#       && /tmp/install.sh \
-#       && rm /tmp/install.sh
-#   when: omz_result.rc != 0
 
 - name: Install Oh My Zsh # noqa: latest
   ansible.builtin.git:

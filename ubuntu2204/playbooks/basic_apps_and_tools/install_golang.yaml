@@ -16,7 +16,7 @@
     cmd: |
       rm -rf {{ HOME }}/tmp_go \
       && mkdir -p {{ HOME }}/tmp_go \
-      && curl -Lo {{ HOME }}/tmp_go/golang.tar.gz {{GOLANG_LATESL_URL}} \
+      && curl -Lo {{ HOME }}/tmp_go/golang.tar.gz {{GOLANG_LATEST_URL}} \
       && tar -C {{ HOME }} -xzf {{ HOME }}/tmp_go/golang.tar.gz \
       && rm -rf {{ HOME }}/tmp_go \
       && echo "export PATH=\$PATH:\"{{ HOME }}/go/bin\"" >> {{ HOME }}/.bashrc

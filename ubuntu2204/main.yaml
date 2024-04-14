@@ -6,9 +6,9 @@
     - name: "{{ item }}"
       ansible.builtin.include_tasks: "./playbooks/basic_config/{{ item }}.yaml"
       loop:
-        # - create_users
         - create_dirs
         - configure_ssh
+        - docker_config
 
 - name: Install Basic Applications and Tools
   hosts: localhost
@@ -23,6 +23,7 @@
         - install_omz
         - install_golang
         - install_sops  # Requires golang
+        - install_just
 
 - name: Install Python and Related Packages
   hosts: localhost
