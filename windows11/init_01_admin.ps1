@@ -1,8 +1,3 @@
-# POWERSHELL ADMIN:
-# Install Chocolatey
-Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-
-# ---
 # POWERSHELL ADMIN (New Window):
 # Gets rid of a lot of Windows crufty unnecessary packages.
 # Run get-appxpackage | format-table -autosize -property PackageFamilyName and compare unwanted packages to this.
@@ -45,41 +40,49 @@ foreach ($app in $apps) {
 
 
 # ---
-# POWERSHELL ADMIN (New Window):
-choco install -y `
-    7zip `
-    adobereader `
-    audacity `
-    authy-desktop `
-    awscli `
-    calibre `
-    darktable `
-    dbeaver `
-    deluge `
-    discord `
-    docker-desktop `
-    firacode `
-    firefox `
-    git `
-    googlechrome `
-    googledrive `
-    just `
-    k3d `
-    lghub `
-    lightshot `
-    notion `
-    obs-studio `
-    plex `
-    powertoys `
-    screentogif `
-    slack `
-    spybot `
-    steam `
-    terraform `
-    tidal `
-    vlc `
-    vscode `
-    whatsapp `
-    windirstat
+# POWERSHELL ADMIN:
+# Installs common apps with winget.
+# NOTE: SPOTIFY may need non-admin.
+$apps = @(
+    "7zip",
+    "Adobe.Acrobat.Reader.64-bit",
+    "Audacity.Audacity",
+    "Amazon.AWSCLI",
+    "calibre.calibre",
+    "dbeaver.dbeaver",
+    "DelugeTeam.Deluge",
+    "Discord.Discord",
+    "Docker.DockerDesktop",
+    "Mozilla.Firefox",
+    "Git.Git",
+    "Google.Chrome",
+    "Google.GoogleDrive",
+    "Casey.Just",
+    "k3d.k3d",
+    "Logitech.GHUB",
+    "Skillbrains.Lightshot",
+    "Notion.Notion",
+    "Notion.NotionCalendar",
+    "OBSProject.OBSStudio",
+    "Plex.Plex",
+    "Microsoft.PowerToys",
+    "NickeManarin.ScreenToGif",
+    "SlackTechnologies.Slack",
+    "Valve.Steam",
+    "Hashicorp.Terraform",
+    "VideoLAN.VLC",
+    "Microsoft.VisualStudioCode",
+    "WhatsApp.WhatsApp",
+    "WinDirStat.WinDirStat"
 
-# INSTALL THESE SEPARATELY: huion-tablet, screen-to-gif, iCUE (RGB RAM).
+)
+
+foreach ($app in $apps) {
+    & winget install -e --id ${app}
+}
+
+# Fira Code install separately:
+# https://github.com/tonsky/FiraCode/wiki/Installing#windows
+
+# Whatsapp install separately:
+# https://www.whatsapp.com/download
