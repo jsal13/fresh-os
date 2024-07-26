@@ -23,7 +23,6 @@
         - install_omz
         - install_golang
         - install_sops  # Requires golang
-        - install_just
 
 - name: Install Python and Related Packages
   hosts: localhost
@@ -34,6 +33,7 @@
       loop:
         - install_miniforge
         - install_pip_packages
+        - install_just  # Requires conda
 
 - name: Install K8s, Terraform, and Related Packages
   hosts: localhost
