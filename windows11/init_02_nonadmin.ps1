@@ -4,7 +4,9 @@
 $apps = @(
     "DavidAnson.vscode-markdownlint",
     "aaron-bond.better-comments"
+    "charliermarsh.ruff",
     "formulahendry.code-runner",
+    "GitHub.vscode-pull-request-github",
     "hashicorp.terraform",
     "ms-azuretools.vscode-docker",
     "ms-kubernetes-tools.vscode-kubernetes-tools",
@@ -25,7 +27,6 @@ $apps = @(
     "tamasfe.even-better-toml",
     "usernamehw.errorlens"
     "Vue.volar",
-    "Vue.vscode-typescript-vue-plugin",
     "Yummygum.city-lights-theme",
     "yzhang.markdown-all-in-one"
 )
@@ -35,4 +36,4 @@ foreach ($app in $apps) {
 }
 
 # Copy settings in this folder to Code folder.
-cp settings.json $env:APPDATA/Code/User
+Copy-Item settings.json $env:APPDATA/Code/User
