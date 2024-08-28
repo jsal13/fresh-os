@@ -20,18 +20,23 @@
         "**/CVS": true,
         "**/.DS_Store": true
     },
-    "files.associations": {},
+    "files.associations": {
+        "*.sql": "jinja-sql",
+        "*.yml": "jinja-yaml"
+    },
     "diffEditor.ignoreTrimWhitespace": true,
     "diffEditor.renderIndicators": true,
     "diffEditor.renderSideBySide": true,
     "editor.acceptSuggestionOnCommitCharacter": true,
     "editor.acceptSuggestionOnEnter": "on",
-    "editor.accessibilitySupport": "auto",
+    "editor.accessibilitySupport": "off",
     "editor.autoClosingBrackets": "languageDefined",
     "editor.autoClosingQuotes": "languageDefined",
     "editor.autoIndent": "keep",
     "editor.autoSurround": "languageDefined",
-    "editor.codeActionsOnSave": {},
+    "editor.codeActionsOnSave": {
+    
+    },
     "editor.codeLens": false,
     "editor.colorDecorators": true,
     "editor.copyWithSyntaxHighlighting": true,
@@ -121,7 +126,6 @@
     "workbench.editor.revealIfOpen": false,
     "workbench.editor.showIcons": true,
     "workbench.editor.showTabs": "multiple",
-    "workbench.editor.tabCloseButton": "right",
     "workbench.editor.tabSizing": "fit",
     "workbench.enableExperiments": true,
     "workbench.iconTheme": "vscode-icons",
@@ -612,7 +616,7 @@
     "editor.bracketPairColorization.enabled": true,
     "terminal.integrated.inheritEnv": false,
     "[python]": {
-        "editor.defaultFormatter": "ms-python.black-formatter"
+        "editor.defaultFormatter": "charliermarsh.ruff"
     },
     "[html]": {
         "editor.defaultFormatter": "vscode.html-language-features"
@@ -640,7 +644,9 @@
                 "figure",
                 "img",
                 "em",
-                "b"
+                "b",
+                "pre",
+                "code"
             ]
         },
         "MD024": false,
@@ -658,10 +664,115 @@
     "workbench.editor.tabActionLocation": "right",
     "remote.autoForwardPortsSource": "hybrid",
     "window.zoomLevel": 2,
-    "python.defaultInterpreterPath": "C:\\Users\\james\\.venv",
     "accessibility.signals.terminalBell": {
         "sound": "off"
     },
     "terminal.integrated.enableVisualBell": false,
-    "workbench.editor.empty.hint": "hidden"
+    "workbench.editor.empty.hint": "hidden",
+    "redhat.telemetry.enabled": true,
+    "isort.check": true,
+    "accessibility.signals.lineHasBreakpoint": {
+        "sound": "off",
+        "announcement": "auto"
+    },
+    "accessibility.signals.chatRequestSent": {
+        "sound": "off",
+        "announcement": "auto"
+    },
+    "accessibility.signals.chatResponseReceived": {
+        "sound": "off"
+    },
+    "accessibility.signals.clear": {
+        "sound": "off",
+        "announcement": "auto"
+    },
+    "accessibility.signals.onDebugBreak": {
+        "sound": "off",
+        "announcement": "auto"
+    },
+    "accessibility.signals.diffLineDeleted": {
+        "sound": "off"
+    },
+    "accessibility.signals.diffLineInserted": {
+        "sound": "off"
+    },
+    "accessibility.signals.diffLineModified": {
+        "sound": "off"
+    },
+    "accessibility.signals.positionHasError": {
+        "sound": "off",
+        "announcement": "auto"
+    },
+    "accessibility.signals.lineHasError": {
+        "sound": "off",
+        "announcement": "auto"
+    },
+    "accessibility.signals.lineHasFoldedArea": {
+        "sound": "off",
+        "announcement": "auto"
+    },
+    "accessibility.signals.lineHasInlineSuggestion": {
+        "sound": "off"
+    },
+    "accessibility.signals.noInlayHints": {
+        "sound": "off",
+        "announcement": "auto"
+    },
+    "accessibility.signals.notebookCellCompleted": {
+        "sound": "off",
+        "announcement": "auto"
+    },
+    "accessibility.signals.notebookCellFailed": {
+        "sound": "off",
+        "announcement": "auto"
+    },
+    "accessibility.signals.progress": {
+        "sound": "off",
+        "announcement": "auto"
+    },
+    "accessibility.signals.taskCompleted": {
+        "sound": "off",
+        "announcement": "auto"
+    },
+    "accessibility.signals.taskFailed": {
+        "sound": "off",
+        "announcement": "auto"
+    },
+    "accessibility.signals.terminalCommandFailed": {
+        "sound": "off",
+        "announcement": "auto"
+    },
+    "accessibility.signals.terminalCommandSucceeded": {
+        "sound": "off",
+        "announcement": "auto"
+    },
+    "accessibility.signals.terminalQuickFix": {
+        "sound": "off",
+        "announcement": "auto"
+    },
+    "accessibility.signals.voiceRecordingStarted": {
+        "sound": "off"
+    },
+    "accessibility.signals.voiceRecordingStopped": {
+        "sound": "off"
+    },
+    "accessibility.signals.positionHasWarning": {
+        "sound": "off",
+        "announcement": "auto"
+    },
+    "accessibility.signals.lineHasWarning": {
+        "sound": "off",
+        "announcement": "auto"
+    },
+    "sqlfluff.linter.run": "onSave",
+    "[sql]": {
+        "editor.defaultFormatter": "dorzey.vscode-sqlfluff"
+    },
+    "dbt.enableNewLineagePanel": true,
+    "dbt.fileNameTemplateGenerateModel": "{prefix}_{sourceName}__{tableName}",
+    "sqlfluff.experimental.format.executeInTerminal": true,
+    "sqlfluff.dialect": "duckdb",
+    "[jinja-sql]": {
+        "editor.defaultFormatter": "dorzey.vscode-sqlfluff"
+    }
 }

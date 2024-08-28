@@ -5,9 +5,11 @@ $apps = @(
     "DavidAnson.vscode-markdownlint",
     "aaron-bond.better-comments"
     "charliermarsh.ruff",
+    "dorzey.vscode-sqlfluff",
     "formulahendry.code-runner",
     "GitHub.vscode-pull-request-github",
     "hashicorp.terraform",
+    "innoverio.vscode-dbt-power-user",
     "ms-azuretools.vscode-docker",
     "ms-kubernetes-tools.vscode-kubernetes-tools",
     "ms-python.black-formatter",
