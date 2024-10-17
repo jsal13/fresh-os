@@ -1,6 +1,0 @@
----
-- name: "[CLEANUP] Cleaning Up"
-  become: true
-  ansible.builtin.shell:
-    cmd: |
-      apt-get -y autoremove
