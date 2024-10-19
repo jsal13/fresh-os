@@ -18,8 +18,11 @@ python3 -m venv venv --system-site-packages
 
 # Create the "venv" alias to activate venv.
 echo 'alias venv="source venv/bin/activate"' >> .bashrc
+. ~/.bashrc
+
 # Download Blinka and install.
 wget https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/raspi-blinka.py
+
 source venv/bin/activate \
     && pip3 install --upgrade adafruit-python-shell adafruit-circuitpython-pm25 \
     && sudo -E env PATH=$PATH python3 raspi-blinka.py
