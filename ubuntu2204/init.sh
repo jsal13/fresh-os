@@ -25,6 +25,12 @@ apt-get update && apt-get install -y \
     unzip \
     wireless-tools
 
+# [TYPST]
+apt-get -y libssl-dev pkg-config
+
+# Install RUST toolchain.
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
 # [FFMPEG APT] For FFMPEG...
 apt-get -y install \
   autoconf automake cmake git-core libass-dev \
@@ -82,3 +88,9 @@ for application in ${list[@]}; do
     asdf install $application latest
     asdf global $application latest
 done
+
+#####################
+# RESTART THE SHELL #
+#####################
+
+cargo install --locked typst-cli 
