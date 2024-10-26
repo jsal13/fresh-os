@@ -51,3 +51,11 @@ source venv/bin/activate \
     && sudo -E env PATH=$PATH python3 raspi-blinka.py
 
 # Requires a reboot now!
+
+venv \
+    && pip install uv
+    && uv pip install -r ./pm25_air_quality/requirements.txt \
+    && uv pip install -r ./pm25_air_quality/requirements-dev.txt
+
+# To run the thing.
+python pm25_air_quality/airquality/main.py
