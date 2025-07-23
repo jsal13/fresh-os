@@ -49,7 +49,6 @@ $apps = @(
     "Audacity.Audacity",
     "Amazon.AWSCLI",
     "calibre.calibre",
-    "dbeaver.dbeaver",
     "DelugeTeam.Deluge",
     "Discord.Discord",
     "Docker.DockerDesktop",

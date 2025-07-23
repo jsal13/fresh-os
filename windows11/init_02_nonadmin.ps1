@@ -2,14 +2,12 @@
 # POWERSHELL NON-ADMIN
 # For VSCode only, don't install if you don't use VSCode.
 $apps = @(
-    "DavidAnson.vscode-markdownlint",
-    "aaron-bond.better-comments"
     "charliermarsh.ruff",
+    "davidanson.vscode-markdownlint",
     "dorzey.vscode-sqlfluff",
     "formulahendry.code-runner",
     "GitHub.vscode-pull-request-github",
     "hashicorp.terraform",
-    "innoverio.vscode-dbt-power-user",
     "ms-azuretools.vscode-docker",
     "ms-kubernetes-tools.vscode-kubernetes-tools",
     "ms-python.black-formatter",
@@ -25,10 +23,7 @@ $apps = @(
     "ms-vscode.powershell",
     "njpwerner.autodocstring",
     "redhat.vscode-yaml",
-    "skellock.just",
     "tamasfe.even-better-toml",
-    "usernamehw.errorlens"
-    "Vue.volar",
     "Yummygum.city-lights-theme",
     "yzhang.markdown-all-in-one"
 )
