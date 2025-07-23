@@ -26,7 +26,7 @@ apt-get update && apt-get install -y \
     wireless-tools
 
 # [TYPST]
-apt-get -y libssl-dev pkg-config
+apt-get install -y libssl-dev pkg-config
 
 # Install RUST toolchain.
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -59,8 +59,8 @@ pip install uv
 uv pip install -r requirements.txt
 
 # [ASDF] Install
-## (Current as of 2024-10-14)
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.1
+## (Current as of 2025-07-14)
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.18.0
 
 # SOURCE FOR ASDF
 . ~/.zshrc
@@ -73,7 +73,6 @@ list=( \
     "awscli" \
     "golang" \
     "nodejs" \
-    "terraformer" \
     "terraform" \
     "sops" \
     "k9s" \
