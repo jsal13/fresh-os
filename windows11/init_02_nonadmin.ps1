@@ -9,7 +9,6 @@ $apps = @(
     "GitHub.vscode-pull-request-github",
     "hashicorp.terraform",
     "ms-azuretools.vscode-docker",
-    "ms-kubernetes-tools.vscode-kubernetes-tools",
     "ms-python.black-formatter",
     "ms-python.isort",
     "ms-python.python",
